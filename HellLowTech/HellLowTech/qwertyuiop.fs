@@ -2,6 +2,7 @@
 
 open System
 open System.Numerics
+open HellLowTech
 
 module qwertyuiop =
 
@@ -15,7 +16,7 @@ module qwertyuiop =
 
     let lesson1 () =
         let n = Console.ReadLine() |> Int32.Parse
-        let resuts = [ for _ in 1..(n - 1) -> Console.ReadLine() |> Int32.Parse ]
+        let results = [ for _ in 1..(n - 1) -> Console.ReadLine() |> Int32.Parse ]
         let teams = [ for i in 1..n -> i ]
 
         let getWinner (r, p) =
@@ -53,7 +54,7 @@ module qwertyuiop =
 
             splitAll [] r
 
-        let rounds = getRounds resuts
+        let rounds = getRounds results
 
         let winner =
             rounds
@@ -120,12 +121,89 @@ module qwertyuiop =
         0
 
 
+    let lesson5 () =
+
+        let x1 = readInt()
+        let y1 = readInt()
+        let x2 = readInt()
+        let y2 = readInt()
+        let x = readInt()
+        let y = readInt()
+
+        let rules = 
+            [
+                x <= x1 && y >= y2 , "NW"
+                x > x1 && x < x2 && y > y2 , "N"
+                x >= x2 && y >= y2 , "NE"
+                x > x2 && y > y1 && y < y2 , "E"
+                x >= x2 && y <= y1 , "SE"
+                x > x1 && x < x2 && y < y1 , "S"
+                x <= x1 && y <= y1 , "SW"
+                x < x1 && y > y1 && y < y2 , "W"
+            ]
+
+        let result = 
+            rules 
+            |> List.filter fst 
+            |> List.head 
+            |> snd 
+
+        printf "%s" result
+
+
+
+        0
+
+
+    let lesson6 () =
+
+        let a = readInt()
+        let b = readInt()
+        let a1 = a % 2
+        let b1 = b % 2
+        let x = b1 - a1
+        match x with 
+        | 0 -> 
+            let ans = abs (b - a) / 2 
+            printfn "%A mins" ans
+        | 1 -> 
+            let ans = abs (b + 1 - a) / 2
+            printfn "%A mins" ans
+        | -1 ->
+            let ans = abs (b - a - 1) / 2
+            printfn "%A mins" ans
+        | _ -> printfn "Gulay Vasya zhuy apilky"
+
+        0
+
+
+    let lesson7 () =
+
+        let s = readInt()
+        let n = readInt()
+        let w = [for _ in 1..n -> readInt()]
+        let (b, s) = 
+            w
+            |> List.fold (fun (bull, shit) r -> if bull + r <= s then (bull + r, shit) else (bull, shit + r)) (0, 0)
+        printfn "Here is your shit!!!"
+        printfn "%A\n%A" b s
+
+        0
+
+
     let lessons =
         [
             "Tournament", lesson1
             "Tiles", lesson2
             "Elevator", lesson3
             "Pens", lesson4
+            "Raft", lesson5
+            "Street", lesson6
+            "Packing", lesson7
+            "Transporting artifacts", TransportingArtifacts.run
+            "Square", Square.run
+            "SpeedTransport", SpeedTransport.run
+            "SubtractingSqares", SubtractingSquares.run
         ]
         |> List.mapi (fun i (s, f) -> i + 1, s, f)
 

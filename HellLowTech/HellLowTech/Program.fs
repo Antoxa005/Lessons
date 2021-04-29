@@ -1,4 +1,5 @@
-﻿open NewLessons.qwertyuiop
+﻿open System
+open NewLessons.qwertyuiop
 
 
 [<EntryPoint>]
@@ -14,6 +15,6 @@ let main argv =
 
     let (a, b, c) = lessons.[n - 1]
     c() |> ignore
-    readInt() |> ignore
+    Console.ReadLine() |> ignore
 
     0
