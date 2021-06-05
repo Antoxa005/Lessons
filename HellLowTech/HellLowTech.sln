@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.30204.135
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "HellLowTech", "HellLowTech\HellLowTech.fsproj", "{108D5D1F-EE6A-413F-9192-BE88D4972A6C}"
 EndProject
-Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "PyAppOne", "PyAppOne\PyAppOne.pyproj", "{F638DFD2-DB11-449C-8144-7CCD3AB5AAC1}"
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "Anton'sPrg", "PyAppOne\Anton'sPrg.pyproj", "{F638DFD2-DB11-449C-8144-7CCD3AB5AAC1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

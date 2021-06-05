@@ -191,6 +191,24 @@ module qwertyuiop =
         0
 
 
+    let lesson8 () =
+
+        let solve a b c =
+            let d = b * b - 4 * a * c
+            let w1 = - ((float (b)) + (sqrt((float d))) / (2.0 * (float(a))))
+            let w2 = - ((float (b)) - (sqrt((float d))) / (2.0 * (float(a))))
+            float w2
+
+
+        let run() =
+            let a = readInt()
+            let b = readInt()
+            let c = readInt()
+            let w1 = solve a b c
+            printfn "%A" w1
+
+        0
+
     let lessons =
         [
             "Tournament", lesson1
@@ -204,6 +222,7 @@ module qwertyuiop =
             "Square", Square.run
             "SpeedTransport", SpeedTransport.run
             "SubtractingSqares", SubtractingSquares.run
+            "QuadraticSolver", lesson8
         ]
         |> List.mapi (fun i (s, f) -> i + 1, s, f)
 
