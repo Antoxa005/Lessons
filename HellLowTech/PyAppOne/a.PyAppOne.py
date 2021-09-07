@@ -9,6 +9,9 @@ import string
 import numpy as np
 import pickle
 import os
+import datetime
+
+number_Of_problems = 26
 
 def RealSqrt(a):
     if a == -1:
@@ -42,25 +45,26 @@ def problem1():
     if d < 0:
         print("D =", d, "< 0 => No solution exists")
 
-    q = math.sqrt(d)
-    x1 = (-b + q) / (A)
-    x2 = (-b - q) / (A)
-    if d > 0:
-        if x1 == int(x1):
-            if x2 == int(x2):
-                print("D =", B, "-", forAC, "=", d, "=> x1 = (", -b, "+", q, ")", "/", A, "=", int(x1), "=> x2 =(", -b, "+", q, ")", "/", A, "=", int(x2))
-            else:
-                print("D =", B, "-", forAC, "=", d, "=> x1 = (", -b, "+", q, ")", "/", A, "=", int(x1), "=> x2 =(", -b, "+", q, ")", "/", A, "=", x2)
-        else:
-            if x2 == int(x2):
-                print("D =", B, "-", forAC, "=", d, "=> x1 = (", -b, "+", q, ")", "/", A, "=", x1, "=> x2 =(", -b, "+", q, ")", "/", A, "=", int(x2))
-            else:
-                print("D =", B, "-", forAC, "=", d, "=> x1 = (", -b, "+", q, ")", "/", A, "=", x1, "=> x2 =(", -b, "+", q, ")", "/", A, "=", x2)
     else:
-        if x1 == int(x1):
-            print("D =", B, "-", forAC, "=", d, "=> x1 = (", -b, "+", q, ")", "/", A, "=", int(x1))
+        q = math.sqrt(d)
+        x1 = (-b + q) / (A)
+        x2 = (-b - q) / (A)
+        if d > 0:
+            if x1 == int(x1):
+                if x2 == int(x2):
+                    print("D =", B, "-", forAC, "=", d, "=> x1 = (", -b, "+", q, ")", "/", A, "=", int(x1), "=> x2 =(", -b, "+", q, ")", "/", A, "=", int(x2))
+                else:
+                    print("D =", B, "-", forAC, "=", d, "=> x1 = (", -b, "+", q, ")", "/", A, "=", int(x1), "=> x2 =(", -b, "+", q, ")", "/", A, "=", x2)
+            else:
+                if x2 == int(x2):
+                    print("D =", B, "-", forAC, "=", d, "=> x1 = (", -b, "+", q, ")", "/", A, "=", x1, "=> x2 =(", -b, "+", q, ")", "/", A, "=", int(x2))
+                else:
+                    print("D =", B, "-", forAC, "=", d, "=> x1 = (", -b, "+", q, ")", "/", A, "=", x1, "=> x2 =(", -b, "+", q, ")", "/", A, "=", x2)
         else:
-            print("D =", B, "-", forAC, "=", d, "=> x1 = (", -b, "+", q, ")", "/", A, "=", x1)
+            if x1 == int(x1):
+                print("D =", B, "-", forAC, "=", d, "=> x1 = (", -b, "+", q, ")", "/", A, "=", int(x1))
+            else:
+                print("D =", B, "-", forAC, "=", d, "=> x1 = (", -b, "+", q, ")", "/", A, "=", x1)
 
 def problem2():
     print("Hello. George here. I am a bot that writes a text when given 7 parameters. 3 nouns, 1 plural noun, 1 adjective, 1 place, and 1 number and you've got yourself a perfect text.")
@@ -288,15 +292,21 @@ def problem6():
                 break
 
 def problem7():
-
-        chars = "abcdefghijklmnopqrstuvwxyz123456789012345678901234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-        number = int(input("Number of passwords? - "))
+        AllChars = ["a","b","c",'d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z','1','2','3','4','5','6','7','8','9','0','1','2','3','4','5','6','7','8','9','0','1','2','3','4','5','6','7','8','9','0','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z']
         length = int(input("Password length? - "))
-        for p in range(number):
-            password = ""
-            for c in range(length):
-                password += random.choice(chars)
-            print(password)
+        numOfP = int(input("Number of passwords? - "))
+        NOP = 0
+        while NOP < numOfP:
+            num = 0
+            password = []
+            realPassword = ""
+            while num < length:
+                password.append(random.choice(AllChars))
+                num += 1
+            for e in password:
+                realPassword += str(e)
+            print(realPassword)
+            NOP += 1
 
 def problem8():
         while True:
@@ -358,8 +368,8 @@ def problem8():
 def problem9():
 
         while True:
-            playerchoice = input("Choose rock paper or scissers ")
-            compoptions = ["rock", "paper", "scissers"]
+            playerchoice = input("Choose rock paper or scissors ")
+            compoptions = ["rock", "paper", "scissors"]
             compchoice = random.choice(compoptions)
             if compchoice == "rock":
                 if playerchoice == "rock":
@@ -685,7 +695,6 @@ def problem12():
         words = open("words.txt")
         lines = words. readlines()
         word = random.choice(lines)
-        print(word)
         guesses = ""
         turns = 10
         while turns > 0:
@@ -1023,6 +1032,18 @@ def problem25():
         t -= 1
         print(t)
 
+def problem26():
+    def listSearch(list, num):
+        run = True
+        while run:
+            choice = random.choice(list)
+            list.remove(choice)
+            realNum = num - choice
+            if realNum in list:
+                print(num, choice)
+            list.append(choice)
+    listSearch()
+
 
 while True:
     print("1. Quadratic Equation Solver")
@@ -1056,7 +1077,7 @@ while True:
     if CodeChance == "/a":
         code = input("Input code ")
         if code == "/random":
-            rand = random.randint(1, 25)
+            rand = random.randint(1, 26)
             if rand == 1:
                 problem1()
             elif rand == 1:
@@ -1188,6 +1209,8 @@ while True:
             problem24()
         elif rand == 25:
             problem25()
+        elif rand == 26:
+            problem26()
         else:
             print("Thats not valid")
     play_again = input("Start over? (yes/no): ")
