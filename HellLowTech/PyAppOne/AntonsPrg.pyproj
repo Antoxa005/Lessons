@@ -5,7 +5,7 @@
     <ProjectGuid>f638dfd2-db11-449c-8144-7ccd3ab5aac1</ProjectGuid>
     <ProjectHome>
     </ProjectHome>
-    <StartupFile>module1.py</StartupFile>
+    <StartupFile>Solution.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -22,10 +22,10 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="a.PyAppOne.py">
+    <Compile Include="Solution.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="module1.py">
+    <Compile Include="Problems.py">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>

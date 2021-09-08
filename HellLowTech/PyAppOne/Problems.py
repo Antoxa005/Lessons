@@ -1,17 +1,24 @@
-import math
 import pygame
-import random
-import tkinter
-import time
-import sys
-import re
-import string
-import numpy as np
-import pickle
 import os
+import random
 import datetime
+import math
+import numpy as np
 
-number_Of_problems = 26
+class Problem:
+    def __init__(self, func, name, num):
+        self.func = func
+        self.name = name
+        self.num = num
+
+class ProblemHolder:
+    def __init__(self, listOfProblems):
+        self.listOfProblems = listOfProblems
+
+    def PrintAll(self):
+        for problem in self.listOfProblems:
+            print(str(problem.num) + ".", problem.name)
+
 
 def RealSqrt(a):
     if a == -1:
@@ -320,8 +327,8 @@ def problem8():
 
                 def __init__(self, master, rows = 15, columns = 15): 
                     self.master = master 
-                    self.row = random.randrange(rows) 
-                    self.col = random.randrange(columns) 
+                    self.row = random.problemNumrange(rows) 
+                    self.col = random.problemNumrange(columns) 
                     self.cost = 0 
                     self.found = False 
                     Button = tkinter.Button 
@@ -725,19 +732,8 @@ def problem13():
         print(choice)
 
 def problem14():
-
-        while True:
-            x = int(input("Input a number "))
-            if x % 2 == 0:
-                print("Your number is even")
-            elif x % 2 == 1:
-                print("Your number is odd")
-            else:
-                print("Thats not a whole number")
-            startover = input("Start over? (yes/no) ")
-            if startover != "yes":
-                print("Ok. Come back later")
-                break
+    print("??? Coming Soon")
+    filler = "filler"
 
 def problem15():
 
@@ -1027,197 +1023,195 @@ def problem25():
     print("DON'T START IT. IT CAN'T STOP. DON'T DO IT.")
     K = int(input("How old are you? "))
     t = 2523200000 - (K * 365 * 24 * 60 * 60)
-    while t > -1:
+    while t > 0:
         time.sleep(1)
         t -= 1
         print(t)
 
 def problem26():
-    def listSearch(list, num):
-        run = True
-        while run:
-            choice = random.choice(list)
-            list.remove(choice)
-            realNum = num - choice
-            if realNum in list:
-                print(num, choice)
-            list.append(choice)
-    listSearch()
+    def calculate(k, n):
+        p = int(n / k)
+        q = p + 1
+
+        ans = min(q*k-n, abs(p*k-n))
+        return ans
+
+    k = np.int64(input())
+    n = np.int64(input())
+    print(calculate(k, n))
+
+def problem27():
+    def calculate(listOfBacteria):
+        resultList = []
+        listOfBacteria.sort()
+        for bacteria in listOfBacteria:
+            realList = listOfBacteria.copy()
+            bacteriaPower = bacteria
+            realList.remove(bacteria)
+            for bac in listOfBacteria:
+                if bacteriaPower > bac:
+                    bacteriaPower += bac
+            if bacteriaPower > max(listOfBacteria):
+                resultList.append(1)
+
+            else:
+                resultList.append(0)
+
+        return resultList
+
+    numOfInputs = int(input())
+    bacList = []
+
+    for e in range(numOfInputs):
+        Input = int(input())
+        bacList.append(Input)
+
+    for ans in calculate(bacList):
+        print(ans)
+
+def problem28():
+    def calculate(a, b):
+        if (a + b) % 3 != 0:
+            return [-1]
+        difference = a - b
+        numOfBoxes = (a + b) / 3
+        bBoxes = (numOfBoxes - difference) / 2
+        aBoxes = bBoxes + difference
+
+        if aBoxes < 0 or bBoxes < 0 or (aBoxes < 0 and bBoxes < 0):
+            return [-1]
+
+        return (aBoxes, bBoxes)
+
+    a = int(input())
+    b = int(input())
+
+    for ans in calculate(a, b):
+        print(ans)
+
+def problem29():
+    class Tower:
+        def __init__(self, x, y, n):
+            self.x = x
+            self.y = y
+
+            self.n = n
+
+        def Rotate90Deg(self):
+            newX, newY = self.n - self.y + 1, self.x
+            self.x, self.y = newX, newY
 
 
-while True:
-    print("1. Quadratic Equation Solver")
-    print("2. Text Writer")
-    print("3. Intercept Finder (For lines)")
-    print("4. Intercept Finder (For parabolas)")
-    print("5. Anton Quiz")
-    print("6. Dice Roller")
-    print("7. Password Maker")
-    print("8. Video Game")
-    print("9. Rock Paper Scissers")
-    print("10. Subtracting Squares")
-    print("11. Calculator")
-    print("12. Hangman")
-    print("13. Magic 8 Ball")
-    print("14. Odd or Even")
-    print("15. Fake ID generator")
-    print("16. Number Guessing Game")
-    print("17. Square")
-    print("18. Pythagorean Theorem")
-    print("19. Three Swimmers")
-    print("20. Time Belts")
-    print("21. Even - Odd")
-    print("22. Ducks?")
-    print("23. To Do List")
-    print("24. Day of the Week Calculator")
-    print("25. Time Till Death")
+    def calculate(listOfTowers):
+        listOfTupleTowers = []
 
+        for tower in listOfTowers:
+            tower.Rotate90Deg()
+            listOfTupleTowers.append((tower.x, tower.y))
 
-    CodeChance = input("? ")
-    if CodeChance == "/a":
-        code = input("Input code ")
-        if code == "/random":
-            rand = random.randint(1, 26)
-            if rand == 1:
-                problem1()
-            elif rand == 1:
-                problem1()
-            elif rand == 2:
-                problem2()
-            elif rand == 3:
-                problem3()
-            elif rand == 4:
-                problem4()
-            elif rand == 5:
-                problem5()
-            elif rand == 6:
-                problem6()
-            elif rand == 7:
-                problem7()
-            elif rand == 8:
-                problem8()
-            elif rand == 9:
-                problem9()
-            elif rand == 10:
-                problem10()
-            elif rand == 11:
-                problem11()
-            elif rand == 12:
-                problem12()
-            elif rand == 13:
-                problem13()
-            elif rand == 14:
-                problem14()
-            elif rand == 15:
-                problem15()
-            elif rand == 16:
-                problem16()
-            elif rand == 17:
-                problem17()
-            elif rand == 18:
-                problem18()
-            elif rand == 19:
-                problem19()
-            elif rand == 20:
-                problem20()
-            elif rand == 21:
-                problem21()
-            elif rand == 22:
-                problem22()
-            elif rand == 23:
-                problem23()
-            elif rand == 24:
-                problem24()
-            elif rand == 25:
-                problem25()
-        elif code == "/oneByOne":
-            problem1()
-            problem2()
-            problem3()
-            problem4()
-            problem5()
-            problem6()
-            problem7()
-            problem8()
-            problem10()
-            problem11()
-            problem12()
-            problem13()
-            problem14()
-            problem15()
-            problem16()
-            problem17()
-            problem18()
-            problem19()
-            problem20()
-            problem21()
-            problem22()
-            problem23()
-            problem24()
-            problem25()
-    else:
-        rand = int(input("Put in the number of the program you want to run: "))
-        if rand == 1:
-            problem1()
-        elif rand == 1:
-            problem1()
-        elif rand == 2:
-            problem2()
-        elif rand == 3:
-            problem3()
-        elif rand == 4:
-            problem4()
-        elif rand == 5:
-            problem5()
-        elif rand == 6:
-            problem6()
-        elif rand == 7:
-            problem7()
-        elif rand == 8:
-            problem8()
-        elif rand == 9:
-            problem9()
-        elif rand == 10:
-            problem10()
-        elif rand == 11:
-            problem11()
-        elif rand == 12:
-            problem12()
-        elif rand == 13:
-            problem13()
-        elif rand == 14:
-            problem14()
-        elif rand == 15:
-            problem15()
-        elif rand == 16:
-            problem16()
-        elif rand == 17:
-            problem17()
-        elif rand == 18:
-            problem18()
-        elif rand == 19:
-            problem19()
-        elif rand == 20:
-            problem20()
-        elif rand == 21:
-            problem21()
-        elif rand == 22:
-            problem22()
-        elif rand == 23:
-            problem23()
-        elif rand == 24:
-            problem24()
-        elif rand == 25:
-            problem25()
-        elif rand == 26:
-            problem26()
-        else:
-            print("Thats not valid")
-    play_again = input("Start over? (yes/no): ")
-    if play_again.lower() != "yes":
-        if play_again.lower() == "no":
-            print("Ok. Come back later")
+        sorted_list = sorted(listOfTupleTowers, key=lambda tow : tow[1])
+        for e in sorted_list:
+            print(e[0])
+
+    listOfTowers = []
+
+    n = int(input())
+    y = 1
+
+    for e in range(n):
+        Input = int(input())
+        listOfTowers.append(Tower(Input, y, n))
+        y += 1
+
+    calculate(listOfTowers)
+
+def problem30():
+
+    def calculate(n):
+        num = 0
+        listOfNums = []
+        while num < 10000:
+            num += 1
+            squareNum = num * num
+            listOfNums.append(squareNum)
+        listOfNums.append(n)
+        listOfNums.sort()
+        index = listOfNums.index(n)
+        if listOfNums[index+1] == n:
+            if n % 2 == 1:
+                return (1, int(math.sqrt(n)))
+
+            else:
+                return (int(math.sqrt(n)), 1)
 
         else:
-            print("I will count that as a NO")
-            break
+            upperSquare = listOfNums[index+1]
+            line = math.sqrt(upperSquare)
+
+
+            distance = upperSquare - n
+
+            oppDistance = 2 * line - 2 - distance
+
+            if line % 2 == 1:
+                if distance == oppDistance:
+                    return (line, line)
+
+                elif distance > oppDistance:
+                    return (line, oppDistance+1)
+
+                else:
+                    return (distance+1, line)
+            else:
+                if distance == oppDistance:
+                    return (line, line)
+
+                elif distance > oppDistance:
+                    return (oppDistance+1, line)
+
+                else:
+                    return (line, distance+1)
+
+    n = int(input())
+
+    for ans in calculate(n):
+        print(ans)
+
+
+
+
+listOfProblems = [
+    Problem(problem1, "Quadratic Equation Solver", 1),
+    Problem(problem2, "Text Writer", 2),
+    Problem(problem3, "Intercept Finder (For lines)", 3),
+    Problem(problem4, "Intercept Finder (For parabolas)", 4),
+    Problem(problem5, "Anton Quiz", 5),
+    Problem(problem6, "Dice Roller", 6),
+    Problem(problem7, "Password Maker", 7),
+    Problem(problem8, "Video Game", 8),
+    Problem(problem9, "Rock Paper Scissers", 9),
+    Problem(problem10, "Subtracting Squares", 10),
+    Problem(problem11, "Calculator", 11),
+    Problem(problem12, "Hangman", 12),
+    Problem(problem13, "Magic 8 Ball", 13),
+    Problem(problem14, "??? Coming Soon", 14),
+    Problem(problem15, "Fake ID generator", 15),
+    Problem(problem16, "Number Guessing Game", 16),
+    Problem(problem17, "Square", 17),
+    Problem(problem18, "Pythagorean Theorem", 18),
+    Problem(problem19, "Three Swimmers", 19),
+    Problem(problem20, "Time Belts", 20),
+    Problem(problem21, "Even - Odd", 21),
+    Problem(problem22, "Ducks?", 22),
+    Problem(problem23, "To Do List", 23),
+    Problem(problem24, "Day of the Week Calculator", 24),
+    Problem(problem25, "Time Till Death", 25),
+    Problem(problem26, "Bus Stops", 26),
+    Problem(problem27, "Agar.io", 27),
+    Problem(problem28, "Boxes With Cakes", 28),
+    Problem(problem29, "Peaceful Towers", 29),
+    Problem(problem30, "Table", 30),
+]
+
+problemHolder = ProblemHolder(listOfProblems)
+
