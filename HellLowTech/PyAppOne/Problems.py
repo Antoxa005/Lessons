@@ -796,6 +796,7 @@ def problem17():
         w = int(((2 * (m + n)) - (math.sqrt(d))) / 8)
         print(w)
 
+
 def problem18():
 
         a = int(input("Input the length of the first leg "))
