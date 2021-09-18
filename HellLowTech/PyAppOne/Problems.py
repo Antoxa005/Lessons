@@ -4,6 +4,7 @@ import random
 import datetime
 import math
 import numpy as np
+import tkinter
 
 class Problem:
     def __init__(self, func, name, num):
@@ -366,8 +367,8 @@ def problem8():
                 map = Map(root) 
                 root.destroy() 
 
-            if __name__ == '__main__': 
-                main() 
+
+            main()
             play_again = input("Play again? (y/n): ")
             if play_again.lower() != "y":
                 break
@@ -1177,6 +1178,59 @@ def problem30():
     for ans in calculate(n):
         print(ans)
 
+def problem31():
+    def calculate(n):
+        def calculateForAnyTri(startN):
+            ans = 0
+            N = startN
+            while N - 3 >= 0:
+                ans += (N * 3 - 3)
+                N -= 3
+
+            return int((ans * 3 + 3 ** N) / 3) * 3
+
+        # I dunno why I wrote func inside fund it just happened by itself
+        return calculateForAnyTri(n)
+
+    n = int(input())
+    print(calculate(n))
+
+def problem32():
+    def calculate(word):
+        Word = []
+        for letter in word:
+            Word.append(letter.lower())
+
+        copyWord = Word.copy()
+        Word.reverse()
+
+        if Word == copyWord:
+            return "yes"
+
+        else:
+            return "no"
+
+
+    word = input()
+
+    print(calculate(word))
+
+def Helper():
+    def PrintAll():
+        num = 1
+        L = []
+
+        while num <= 20212021:
+            num *= 4
+            L.append(num)
+        return L
+
+    for Num in PrintAll():
+
+        print(Num)
+
+
+
 
 
 
@@ -1211,6 +1265,9 @@ listOfProblems = [
     Problem(problem28, "Boxes With Cakes", 28),
     Problem(problem29, "Peaceful Towers", 29),
     Problem(problem30, "Table", 30),
+    Problem(problem31, "Triangles", 31),
+    Problem(problem32, "Palindromes", 32),
+    Problem(Helper, "f", 33),
 ]
 
 problemHolder = ProblemHolder(listOfProblems)
