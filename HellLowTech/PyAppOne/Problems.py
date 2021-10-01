@@ -1190,7 +1190,7 @@ def problem31():
 
             return int((ans * 3 + 3 ** N) / 3) * 3
 
-        # I dunno why I wrote func inside fund it just happened by itself
+        # I dunno why I wrote func inside func it just happened by itself
         return calculateForAnyTri(n)
 
     n = int(input())
@@ -1230,7 +1230,8 @@ def Helper():
 
         print(Num)
 
-
+def problem33():
+    pass
 
 
 
